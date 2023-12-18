@@ -1,7 +1,12 @@
 <script setup>
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { useStoreModal } from '@/stores/modal'
-const modal= useStoreModal()
+import { useDrinkStore } from '@/stores/drink'
+import { useStoreFavorite } from '@/stores/favorite'
+
+const modal = useStoreModal()
+const store = useDrinkStore()
+const favorite = useStoreFavorite()
 </script>
 
 <template>
@@ -23,22 +28,57 @@ const modal= useStoreModal()
                             class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6">
                             <div>
                                 <div class="mt-3">
+<DialogTitle as="h2"
+class="text-center font-extrabold text-4xl text-purple-400">
+{{store.drinkId.strDrink}}
+</DialogTitle>
+<img 
+class="mx-auto w-80"
+:src="store.drinkId.strDrinkThumb" :alt='`image of drink ${store.drinkId.strDrink}`'>
+      <DialogTitle as="h3"
+        class="uppercase text-center font-extrabold text-2xl mt-5"
+        >ingredient and measure
+</DialogTitle>
+<div class="flex flex-row justify-center  mt-3">
+    <div class="mr-3  text-gray-500">
+    <p v-for="ingredient,i in store.filterIngredient" :key="i"> {{ ingredient }} </p>
+    </div>
+    <div
+    class=" text-gray-500">
+    <p v-for="masure,i in store.filterMasure " :key="i">{{ masure }}</p>
+    </div>
+</div>
 
-
-
+<DialogTitle
+class="uppercase text-center font-extrabold text-2xl mt-5"
+as="h3">
+instruccion
+</DialogTitle>
+<article
+class="text-lg text-gray-500  mt-3"
+>
+    {{ store.drinkId.strInstructions }}
+</article>
                                 </div>
                             </div>
-                            <div class="mt-5 sm:mt-6 flex justify-between gap-4">
+                            <div class="mt-5 sm:mt-6 flex justify-center gap-4">
       
                                 <button
      
-                                class="bg-orange-300 text-purple-700 px-20 py-2 font-extrabold uppercase rounded-lg
-        hover:bg-purple-200 hover:text-orange-700 ease-linear active:animate-ping hover:px-32 transition-all focus:outline-none"
+                                class="bg-gray-400 text-black px-20 py-2 font-extrabold uppercase rounded-lg
+        hover:bg-red-700 hover:text-white ease-linear active:animate-ping hover:px-32 transition-all focus:outline-none"
             type="button"
-            
-
                                 @click="modal.clickShowModal()">
                         close
+                    </button>
+                    <button
+                  class="bg-orange-300 text-purple-700 px-20 py-2 font-extrabold uppercase rounded-lg
+        hover:bg-purple-200 hover:text-orange-700 ease-linear active:animate-ping hover:px-32 transition-all focus:outline-none"
+                    type="button"
+                    @click="favorite.handleClickFav()"
+                    :class="[modal.reactiveFavBotton==='deleted favorite'?
+                    'bg-red-500 text-white  hover:bg-red-800 hover:text-white hover:px-24 ':'']">
+                       {{modal.reactiveFavBotton }}
                     </button>
                             </div>
                         </DialogPanel>

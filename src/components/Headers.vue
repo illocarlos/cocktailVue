@@ -2,14 +2,21 @@
 import { computed } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import { useDrinkStore } from '../stores/drink'
+import{ useStoreAlert } from '../stores/alert'
 
-
-const store=useDrinkStore()
+const store = useDrinkStore()
+const alert = useStoreAlert()
 const route = useRoute()
 
 const homePage = computed(() => route.name === 'home')
 
 const handleSubmit = () => {
+    if (Object.values(store.search).includes("")) {
+        alert.text = "fill in all the fields"
+        alert.show = true
+        alert.error=true
+        return 
+    }
     store.queryingAPI()
 }
 

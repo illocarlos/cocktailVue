@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
-import ApiService from '@/service/ApiService.js'
-import { ref } from 'vue'
-
-
+import { ref, computed } from 'vue'
+import { useStoreFavorite } from './favorite'
+import { useDrinkStore } from '@/stores/drink'
 export const useStoreModal = defineStore('modal', () => {
-
+    const store = useDrinkStore()
+    const fav = useStoreFavorite()
     const modal = ref(false)
 
 
@@ -12,10 +12,13 @@ export const useStoreModal = defineStore('modal', () => {
         modal.value = !modal.value
 
     }
-
+    const reactiveFavBotton = computed(() => {
+        return fav.exisitFav(store.drinkId.idDrink) ? 'deleted favorite' : 'add favorite'
+    })
 
     return {
         modal,
-        clickShowModal
+        clickShowModal,
+        reactiveFavBotton
     }
 })
