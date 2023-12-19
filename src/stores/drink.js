@@ -9,6 +9,7 @@ export const useDrinkStore = defineStore('drink', () => {
     const modal = useStoreModal()
     const category = ref([])
     const drinkId = ref({})
+    const spinnerShow = ref(false)
 
     const filterIngredient = ref([])
     const filterMasure = ref([])
@@ -31,13 +32,22 @@ export const useDrinkStore = defineStore('drink', () => {
     const totalQuering = ref([])
 
     onMounted(async function () {
+
         const { data: { drinks } } = await ApiService.getCategory()
         category.value = drinks
 
     })
     async function queryingAPI() {
+
+
+        spinnerShow.value = true
         const { data: { drinks } } = await ApiService.getQuerying(search)
-        totalQuering.value = drinks
+
+        setTimeout(() => {
+            totalQuering.value = drinks
+            spinnerShow.value = false
+        }, 2000)
+
     }
 
     function filterIngredientFunction(drinkId) {
@@ -90,7 +100,8 @@ export const useDrinkStore = defineStore('drink', () => {
         selectRecipes,
         filterIngredient,
         filterMasure,
-        zeroDrink
+        zeroDrink,
+        spinnerShow
 
     }
 

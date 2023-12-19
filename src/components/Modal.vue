@@ -25,7 +25,7 @@ const favorite = useStoreFavorite()
                         leave-from="opacity-100 translate-y-0 sm:scale-100"
                         leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                         <DialogPanel
-                            class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6">
+                            class="relative transform overflow-hidden rounded-lg bg-slate-800  px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6">
                             <div>
                                 <div class="mt-3">
 <DialogTitle as="h2"
@@ -33,29 +33,29 @@ class="text-center font-extrabold text-4xl text-purple-400">
 {{store.drinkId.strDrink}}
 </DialogTitle>
 <img 
-class="mx-auto w-80"
+class="mx-auto w-80 mt-4"
 :src="store.drinkId.strDrinkThumb" :alt='`image of drink ${store.drinkId.strDrink}`'>
       <DialogTitle as="h3"
-        class="uppercase text-center font-extrabold text-2xl mt-5"
+        class="uppercase text-center font-extrabold text-2xl mt-5 text-white"
         >ingredient and measure
 </DialogTitle>
 <div class="flex flex-row justify-center  mt-3">
-    <div class="mr-3  text-gray-500">
+    <div class="mr-3  text-white">
     <p v-for="ingredient,i in store.filterIngredient" :key="i"> {{ ingredient }} </p>
     </div>
     <div
-    class=" text-gray-500">
+    class=" text-white">
     <p v-for="masure,i in store.filterMasure " :key="i">{{ masure }}</p>
     </div>
 </div>
 
 <DialogTitle
-class="uppercase text-center font-extrabold text-2xl mt-5"
+class="uppercase text-white text-center font-extrabold text-2xl mt-5"
 as="h3">
 instruccion
 </DialogTitle>
 <article
-class="text-lg text-gray-500  mt-3"
+class="text-lg text-white  mt-3"
 >
     {{ store.drinkId.strInstructions }}
 </article>
@@ -65,19 +65,19 @@ class="text-lg text-gray-500  mt-3"
       
                                 <button
      
-                                class="bg-gray-400 text-black px-20 py-2 font-extrabold uppercase rounded-lg
-        hover:bg-red-700 hover:text-white ease-linear active:animate-ping hover:px-32 transition-all focus:outline-none"
+                                class=" bg-gray-400 text-black px-6  md:px-20 md:py-2  lg:px-20 lg:py-2  text-md  font-extrabold uppercase rounded-lg
+        hover:bg-black hover:text-white ease-linear active:animate-ping hover:px-28 transition-all focus:outline-none"
             type="button"
                                 @click="modal.clickShowModal()">
                         close
                     </button>
                     <button
-                  class="bg-orange-300 text-purple-700 px-20 py-2 font-extrabold uppercase rounded-lg
-        hover:bg-purple-200 hover:text-orange-700 ease-linear active:animate-ping hover:px-32 transition-all focus:outline-none"
+                  class=" bg-orange-300 text-purple-700 px-6 md:px-20 md:py-2    lg:px-20 lg:py-2  font-extrabold uppercase rounded-lg
+        hover:bg-purple-700 hover:text-orange-500 ease-linear active:animate-ping hover:px-32 transition-all focus:outline-none"
                     type="button"
                     @click="favorite.handleClickFav()"
                     :class="[modal.reactiveFavBotton==='deleted favorite'?
-                    'bg-red-500 text-white  hover:bg-red-800 hover:text-white hover:px-24 ':'']">
+                    'bg-red-900 text-white hover:text-black hover:bg-red-400 hover:px-28 ':'']">
                        {{modal.reactiveFavBotton }}
                     </button>
                             </div>
