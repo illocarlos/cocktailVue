@@ -76,7 +76,7 @@ class="md:w-2/5 2xl:1/3 bg-gradient-to-tr from-purple-600 via-purple-400 to-oran
         id="category"
    v-model="store.search.category"
         >
-        <option  value="">-- select --</option>
+        <option class="text-center"  value="">-- select --</option>
         <option
         v-for="categorie , index in store.category"
         :key="index+1"
