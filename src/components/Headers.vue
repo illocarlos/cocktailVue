@@ -1,13 +1,13 @@
 <script setup>
 import { computed } from 'vue';
-import { RouterLink, useRoute } from 'vue-router';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
 import { useDrinkStore } from '../stores/drink'
 import{ useStoreAlert } from '../stores/alert'
 import Spinner from './Spinner.vue';
+
 const store = useDrinkStore()
 const alert = useStoreAlert()
 const route = useRoute()
-
 const homePage = computed(() => route.name === 'home')
 
 const handleSubmit = () => {
@@ -23,12 +23,17 @@ const handleSubmit = () => {
 
 
 
+
+const handleNotAlcohol = () => {
+    store.noAlc()
+}
+
 </script>
 
 <template>
   <header 
   :class="[homePage?'header':'']"
-  class="bg-slate-900">
+  class="bg-slate-900 z-30">
     <div class="mx-auto container px-5 py-16">
 <div class="flex justify-between items-center">
     <div>
@@ -48,6 +53,12 @@ active-class="text-2xl text-white"
     <RouterLink class="text-purple-400  uppercase font-extrabold"  
     active-class="text-2xl text-white"
     :to="{ name: 'favorite' }">Favorite</RouterLink>
+
+    <button
+   class="text-purple-400  uppercase font-extrabold mb-2"  
+       active-class="text-2xl text-white"
+    @click="handleNotAlcohol"> drink 0%
+</button>
 
     </nav>
 </div>
@@ -99,13 +110,14 @@ class="md:w-2/5 2xl:1/3 bg-gradient-to-tr from-purple-600 via-purple-400 to-oran
     v-if="store.spinnerShow"
 />
 </form>
+
 </div>
   </header>
 </template>
 <style scoped>
 
 .header{
-background-image: url('/img/bg.jpg');
+background-image: url('');
 background-size: cover;
 background-position: center;
 

@@ -1,3 +1,5 @@
+// si usamlos pinia y router  debemos de llamarlo en el main  eso lo crea directamente vite pero hay que saberlo
+
 import './assets/main.css'
 
 import { createApp } from 'vue'
