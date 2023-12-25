@@ -54,11 +54,13 @@ active-class="text-2xl text-white"
     active-class="text-2xl text-white"
     :to="{ name: 'favorite' }">Favorite</RouterLink>
 
-    <button
-   class="text-purple-400  uppercase font-extrabold mb-2"  
-       active-class="text-2xl text-white"
-    @click="handleNotAlcohol"> drink 0%
-</button>
+   <RouterLink :to="{ name: 'home' }">
+       <button
+      class="text-purple-400  uppercase font-extrabold mb-2"  
+          active-class="text-2xl text-white"
+       @click="handleNotAlcohol"> drink 0%
+   </button>
+   </RouterLink>
 
     </nav>
 </div>
@@ -117,7 +119,7 @@ class="md:w-2/5 2xl:1/3 bg-gradient-to-tr from-purple-600 via-purple-400 to-oran
 <style scoped>
 
 .header{
-background-image: url('');
+background-image: url('../../public/img/bg.jpg');
 background-size: cover;
 background-position: center;
 
